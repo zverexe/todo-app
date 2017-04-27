@@ -22,6 +22,8 @@ export class TodoFormComponent {
 
     title: string = '';
     message: string = '';
+    done : boolean = false;
+
     key: any;
     constructor(private todoService: TodoService){}
 
@@ -29,12 +31,10 @@ export class TodoFormComponent {
         event.preventDefault();
         let listing={
             title: this.title,
-            message: this.message
+            message: this.message,
+            done: this.done
         }
-
         this.todoService.addTodo(listing);
     }
-
-
 }
 

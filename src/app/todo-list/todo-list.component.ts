@@ -36,7 +36,7 @@ export class TodoListComponent implements OnInit{
     }
 
     showUpdate(){
-       this.editForm = true;
+      this.editForm = true;
     }
 
     update(event, todo){
@@ -48,6 +48,27 @@ export class TodoListComponent implements OnInit{
                 this.todos=todo;
             });
     }
+
+    updateDone(todo){
+        event.preventDefault();
+        this.todoService.checkTodo(todo.$key, todo);
+        /*this.todoService.getTodo()
+            .subscribe(todo=>{
+                this.todos=todo;
+            });*/
+    }
+
+    closeEdit(event, todo){
+        event.preventDefault();
+        //this.todoService.updateTodo(todo.$key, todo);
+        this.editForm = false;
+        this.todoService.getTodo()
+            .subscribe(todo=>{
+                this.todos=todo;
+            });
+    }
+
+
 
 }
 

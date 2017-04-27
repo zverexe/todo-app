@@ -16,6 +16,8 @@ export class TodoService{
 
     }
 
+
+
     todos: FirebaseListObservable<any[]>;
 
     getTodo(){
@@ -35,6 +37,16 @@ export class TodoService{
     updateTodo(key, todo){
         return this.todos.update(key, todo);
     }
+
+    checkTodo(key, todo){
+        if(!todo.done){
+            todo.done = true;
+        }else{
+            todo.done = false;
+        }
+        return this.todos.update(key, todo);
+    }
+
 
 
 }

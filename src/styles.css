@@ -27,3 +27,45 @@ footer{
 .footer{
     height: 40px;
 }
+
+input[type=checkbox]{
+    position: relative;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    margin: 0;
+    margin-right: 21px;
+}
+input[type="checkbox"]:after, .checkbox-inline input[type="checkbox"]:after {
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: 15px;
+    transition: 240ms;
+    width: 15px;
+}
+
+input[type="checkbox"]:checked:before, .checkbox-inline input[type="checkbox"]:checked:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    display: table;
+    width: 6px;
+    height: 12px;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    content: '';
+}
+input[type="checkbox"]:checked:after, .checkbox-inline input[type="checkbox"]:checked:after {
+    background-color: #333333;
+    border-color: #333333;
+}
+input[type="checkbox"]:disabled:checked:after, .checkbox-inline input[type="checkbox"]:disabled:checked:after {
+    background-color: #eeeeee;
+    border-color: transparent;
+}
