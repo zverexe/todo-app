@@ -2,9 +2,9 @@
  * Created by deadly on 24.04.17.
  */
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from "../services/todo.service";
+import { TodoService } from '../services/todo.service';
 import { AngularFire, AuthProviders } from 'angularfire2';
-import { UpdateTodoComponent } from '../update-todo/update-todo.component';
+// import { UpdateTodoComponent } from '../update-todo/update-todo.component';
 
 import { Todo } from '../todo';
 
@@ -16,7 +16,7 @@ import { Todo } from '../todo';
 })
 export class TodoListComponent implements OnInit{
     todos: any;
-    //title: string = '';
+    // title: string = '';
    // message: string = '';
 
     editForm: boolean = false;
@@ -24,32 +24,32 @@ export class TodoListComponent implements OnInit{
 
     constructor( private todoService: TodoService, private af: AngularFire){}
 
-    ngOnInit(){
+    ngOnInit() {
        this.todoService.getTodo()
-            .subscribe(todo=>{
-                this.todos=todo;
+            .subscribe(todo => {
+                this.todos = todo;
             });
     }
 
-    deleteTodo(todo: Todo){
+    deleteTodo(todo: Todo) {
         this.todoService.delete(todo);
     }
 
-    showUpdate(){
+    showUpdate() {
       this.editForm = true;
     }
 
-    update(event, todo){
+    update(event, todo) {
         event.preventDefault();
         this.todoService.updateTodo(todo.$key, todo);
         this.editForm = false;
         this.todoService.getTodo()
-            .subscribe(todo=>{
-                this.todos=todo;
+            .subscribe(todo => {
+                this.todos = todo;
             });
     }
 
-    updateDone(todo){
+    updateDone(todo) {
         event.preventDefault();
         this.todoService.checkTodo(todo.$key, todo);
         /*this.todoService.getTodo()

@@ -9,29 +9,29 @@ export const firebaseConfig = {
   apiKey: 'AIzaSyCx3-809Yi9jl0rPf5LJ2Fi8FHdQraPswk',
   authDomain: 'todo-app-46a49.firebaseapp.com',
   databaseURL: 'https://todo-app-46a49.firebaseio.com',
-  projectId: "todo-app-46a49",
+  projectId: 'todo-app-46a49',
   storageBucket: 'todo-app-46a49.appspot.com',
   messagingSenderId: '87509693702'
 };
 
 const myFirebaseAuthConfig = {
-  //provider: AuthProviders.Facebook,
+  // provider: AuthProviders.Facebook,
   method: AuthMethods.Popup
 };
 
 
 import { AppComponent } from './app.component';
-import {TodoListComponent} from "./todo-list/todo-list.component";
-import {TodoFormComponent} from "./todo-form/todo-form.component";
-import {TodoService} from "./services/todo.service";
-import {UpdateTodoComponent} from "./update-todo/update-todo.component";
+import {TodoListComponent} from './todo-list/todo-list.component';
+import {TodoFormComponent} from './todo-form/todo-form.component';
+import {TodoService} from './services/todo.service';
+// import {UpdateTodoComponent} from './update-todo/update-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoFormComponent,
-    UpdateTodoComponent
+    // UpdateTodoComponent
   ],
   imports: [
     NgbModule.forRoot(),

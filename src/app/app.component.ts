@@ -33,12 +33,12 @@ export class AppComponent {
         }
     );*/
     this.af.auth.subscribe(auth => {
-      if(auth) {
+      if (auth) {
         this.isLoggedIn = true;
         this.user_displayName = auth;
-        //this.user_email = auth.facebook.email;
+        // this.user_email = auth.facebook.email;
         console.log(auth);
-      }else{
+      } else {
         this.isLoggedIn = false;
       }
     });
@@ -55,7 +55,7 @@ export class AppComponent {
 
   }
 
-  loginFacebook(){
+  loginFacebook() {
     this.af.auth.login({
       provider: AuthProviders.Facebook
     });
