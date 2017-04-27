@@ -1,0 +1,23 @@
+<ul class="list-unstyled todo-items-list">
+    <li class="todo-item" *ngFor="let todo of todos">
+        <div *ngIf="!editForm" class="todo-body">
+            <h4>{{todo.title}}</h4>
+            <p>{{todo.message}}</p>
+        </div>
+        <form  *ngIf="editForm" action="" (ngSubmit) = "update($event, todo); form.reset();" class="create-todo" #form="ngForm">
+            <div class="form-group">
+                <label for="">Create Title</label>
+                <input class="form-control" type="text" name="title" [(ngModel)]="todo.title" required>
+            </div>
+            <div class="form-group">
+                <label for="">Add text</label>
+                <textarea class="form-control" name="message" id="" cols="30" rows="10" [(ngModel)]="todo.message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add</button>
+        </form>
+        <div *ngIf="(af.auth | async )" class="todo-actions">
+            <div class="todo-action delete-todo" (click)="deleteTodo(todo)"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+            <div class="todo-action edit-todo" (click)="showUpdate(todo)"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+        </div>
+    </li>
+</ul>

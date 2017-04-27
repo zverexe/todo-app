@@ -1,3 +1,68 @@
-<h1>
-  {{title}}
-</h1>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="header">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="left-header">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item"><a href="">Home</a></li>
+              <li class="list-inline-item"><a href="">Dashboard</a></li>
+            </ul>
+          </div>
+          <div class="right-header">
+            <!--<ng-template #content let-c="close" let-d="dismiss">
+              <div>
+                <div class="modal-header" [hidden]="hideModal">
+                  <h4 class="modal-title">Modal title</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-unstyled list-inline">
+                    <li class="login-btn google-login" (click)="login()"><h4>Login with <i class="fa fa-google" aria-hidden="true"></i></h4></li>
+                    <li class="login-btn facebook-login" (click)="loginFacebook()"><h4>Login with <i class="fa fa-facebook-square" aria-hidden="true"></i></h4></li>
+                    <h4 (click)="close()">close</h4>
+                  </ul>
+                </div>
+              </div>
+            </ng-template>-->
+            <div class="user-info"  *ngIf="isLoggedIn">
+                <p>{{user_displayName.auth.displayName}} ({{user_displayName.auth.email}})<p>
+                <img class="rounded-circle" src="{{user_displayName.auth.photoURL}}" alt="">
+            </div>
+            <ul class="list-unstyled list-inline">
+              <li *ngIf="!isLoggedIn" class="list-inline-item"><button class="btn btn-primary login-btn google-login" (click)="login()">Login with <i class="fa fa-google" aria-hidden="true"></i></button></li>
+              <li *ngIf="!isLoggedIn" class="list-inline-item"><button class="btn btn-primary login-btn facebook-login" (click)="loginFacebook()">Login with <i class="fa fa-facebook-square" aria-hidden="true"></i></button></li>
+              <li *ngIf="isLoggedIn" class="list-inline-item"><button class="btn btn btn-secondary login-btn" (click)="logout()">Logout</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <!--<div *ngIf="!(af.auth | async )" class="alert alert-warning"><h4>Login in order to add messages</h4></div>-->
+        <div *ngIf="!isLoggedIn" class="alert alert-warning"><h4>Login in order to add messages</h4></div>
+        <div *ngIf="isLoggedIn" class="todo-form">
+          <todo-form></todo-form>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <todo-list></todo-list>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container footer">
+  <div class="row">
+    <div class="col-sm-12">
+      <footer class="text-center">
+        <h4>Created by deadly aka Taras Boyko</h4>
+      </footer>
+    </div>
+  </div>
+</div>

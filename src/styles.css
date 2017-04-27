@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    //padding-top: 20px;
+    font-family: "Roboto", sans-serif;
+    min-height:100%;
+    height:auto;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+footer{
+    background-color: #282830;
+    color: #fff;
+    padding: 20px 0;
+}
+
+
+
+.page-wrapper{
+    min-height: calc(100vh - 40px);     /* Chrome */
+    min-height: -moz-calc(100% - 40px);     /* Firefox */
+    min-height: calc(100vmin - 8vh);
+}
+
+.footer{
+    height: 40px;
+}
