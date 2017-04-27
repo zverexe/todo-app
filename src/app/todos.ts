@@ -7,7 +7,8 @@ const todos: Array<Todo> = [
   {
     title: 'test',
     message: 'simple message',
-    done: false
+    done: false,
+    editmode: false
   }
 ];
 

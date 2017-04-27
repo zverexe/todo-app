@@ -32,20 +32,20 @@ export class TodoListComponent implements OnInit{
     }
 
     deleteTodo(todo: Todo) {
-        this.todoService.delete(todo);
+        this.todoService.deleteTodo(todo);
     }
 
-    showUpdate() {
-      this.editForm = true;
+    showUpdate(todo) {
+      todo.editmode = true;
     }
 
     update(event, todo) {
         event.preventDefault();
         this.todoService.updateTodo(todo.$key, todo);
-        this.editForm = false;
+        todo.editmode = false;
         this.todoService.getTodo()
             .subscribe(todo => {
-                this.todos = todo;
+                this.todos = todo.map(item => item.editmode = false);
             });
     }
 

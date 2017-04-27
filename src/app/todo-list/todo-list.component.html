@@ -1,6 +1,6 @@
 <ul class="list-unstyled todo-items-list">
     <li class="todo-item" *ngFor="let todo of todos">
-        <div *ngIf="!editForm" class="todo-body">
+        <div *ngIf="!todo.editmode" class="todo-body">
             <input type="checkbox" class="form-check-input" [checked]="todo.done"
                    name="done"
                    (click)="updateDone(todo)">
@@ -9,7 +9,7 @@
             <p>{{todo.message}}</p>
             </div>
         </div>
-        <form  *ngIf="editForm" action="" (ngSubmit) = "update($event, todo); form.reset();" class="create-todo" #form="ngForm">
+        <form  *ngIf="todo.editmode" action="" (ngSubmit) = "update($event, todo); form.reset();" class="create-todo" #form="ngForm">
             <div class="form-group">
                 <label for="">Create Title</label>
                 <input class="form-control" type="text" name="title" [(ngModel)]="todo.title" required>
@@ -23,7 +23,7 @@
         </form>
         <div *ngIf="(af.auth | async )" class="todo-actions">
             <div class="todo-action delete-todo" (click)="deleteTodo(todo)"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-            <div class="todo-action edit-todo" (click)="showUpdate()"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+            <div class="todo-action edit-todo" (click)="showUpdate(todo)"><i class="fa fa-pencil" aria-hidden="true"></i></div>
         </div>
     </li>
 </ul>
