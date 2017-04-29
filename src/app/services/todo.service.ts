@@ -31,7 +31,7 @@ export class TodoService {
   }
 
   updateTodo(key, todo) {
-    return this.todos.update(todo, key);
+    return this.todos.update(key,todo);
   }
 
   checkTodo(key, todo) {

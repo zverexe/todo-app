@@ -42,16 +42,21 @@ export class TodoListComponent implements OnInit {
 
   update(event, todo) {
     event.preventDefault();
-    this.todoService.updateTodo(todo.$key, todo);
     todo.editmode = false;
-    this.todoService.getTodo()
+    this.todoService.updateTodo(todo.$key, todo);
+    /*this.todoService.getTodo()
       .subscribe(todo => {
         this.todos = todo.map(item => item.editmode = false);
-      });
+      });*/
+    this.todoService.getTodo()
+        .subscribe(todo => {
+          this.todos = todo;
+        });
   }
 
-  updateDone(todo) {
+  updateDone(event, todo) {
     event.preventDefault();
+
     this.todoService.checkTodo(todo.$key, todo);
     /*this.todoService.getTodo()
      .subscribe(todo=>{
@@ -63,6 +68,7 @@ export class TodoListComponent implements OnInit {
     event.preventDefault();
     //this.todoService.updateTodo(todo.$key, todo);
     todo.editmode = false;
+    console.log(todo.editmode);
     this.todoService.getTodo()
       .subscribe(todo => {
         this.todos = todo;
