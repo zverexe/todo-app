@@ -4,7 +4,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../services/todo.service';
 import {AngularFire, AuthProviders} from 'angularfire2';
-// import { UpdateTodoComponent } from '../update-todo/update-todo.component';
 
 import {Todo} from '../todo';
 
@@ -19,17 +18,19 @@ export class TodoListComponent implements OnInit {
   // title: string = '';
   // message: string = '';
 
-  editForm: boolean = false;
-  todo: Todo;
+  globalEditMode: boolean = false;
+  oldTodo: Todo;
 
-  constructor(private todoService: TodoService, private af: AngularFire) {
-  }
-
-  ngOnInit() {
+  constructor(private todoService: TodoService, private af: AngularFire) {}
+  getFreshListOfTodos() {
     this.todoService.getTodo()
       .subscribe(todo => {
         this.todos = todo;
       });
+  }
+
+  ngOnInit() {
+    this.getFreshListOfTodos();
   }
 
   deleteTodo(todo: Todo) {
@@ -37,42 +38,25 @@ export class TodoListComponent implements OnInit {
   }
 
   showUpdate(todo) {
+    this.oldTodo = Object.assign({}, todo);
     todo.editmode = true;
+    this.globalEditMode = true;
   }
 
-  update(event, todo) {
-    event.preventDefault();
+  update(todo) {
     todo.editmode = false;
+    this.globalEditMode = false;
     this.todoService.updateTodo(todo.$key, todo);
-    /*this.todoService.getTodo()
-      .subscribe(todo => {
-        this.todos = todo.map(item => item.editmode = false);
-      });*/
-    this.todoService.getTodo()
-        .subscribe(todo => {
-          this.todos = todo;
-        });
+    this.getFreshListOfTodos();
   }
 
-  updateDone(event, todo) {
-    event.preventDefault();
-
+  updateDone(todo) {
     this.todoService.checkTodo(todo.$key, todo);
-    /*this.todoService.getTodo()
-     .subscribe(todo=>{
-     this.todos=todo;
-     });*/
   }
 
-  closeEdit(event, todo) {
-    event.preventDefault();
-    //this.todoService.updateTodo(todo.$key, todo);
-    todo.editmode = false;
-    console.log(todo.editmode);
-    this.todoService.getTodo()
-      .subscribe(todo => {
-        this.todos = todo;
-      });
+  closeEdit(todo) {
+    this.globalEditMode = false;
+    Object.assign(todo, this.oldTodo);
   }
 
 

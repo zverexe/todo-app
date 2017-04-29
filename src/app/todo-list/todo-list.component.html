@@ -9,7 +9,7 @@
             <p>{{todo.message}}</p>
             </div>
         </div>
-        <form  *ngIf="todo.editmode" action="" (ngSubmit) = "update($event, todo); form.reset();" class="create-todo" #form="ngForm">
+        <form *ngIf="todo.editmode" (ngSubmit)="update(todo); form.reset();" class="create-todo" #form="ngForm" novalidate>
             <div class="form-group">
                 <label for="">Create Title</label>
                 <input class="form-control" type="text" name="title" [(ngModel)]="todo.title" required>
@@ -19,11 +19,11 @@
                 <textarea class="form-control" name="message" id="" cols="5" rows="2" [(ngModel)]="todo.message" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Add</button>
-            <button type="button" class="btn btn-default" (click)="closeEdit($event, todo)">Cancel</button>
+            <button type="button" class="btn btn-default" (click)="closeEdit(todo)">Cancel</button>
         </form>
         <div *ngIf="(af.auth | async )" class="todo-actions">
             <div class="todo-action delete-todo" (click)="deleteTodo(todo)"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-            <div class="todo-action edit-todo" (click)="showUpdate(todo)"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+            <div class="todo-action edit-todo" *ngIf="!globalEditMode" (click)="showUpdate(todo)"><i class="fa fa-pencil" aria-hidden="true"></i></div>
         </div>
     </li>
 </ul>
